@@ -1,0 +1,50 @@
+button {
+    width: 100px;
+    height: 30px;
+
+}
+
+botton:hover {}
+
+.main-container {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.content-container {
+    border: 1px solid, black;
+    display: grid;
+    grid-template-columns:50% 50%;
+}
+
+.single-record{
+    border: 1px black solid;
+    padding: 30px;
+    text-align: center;
+    overflow-wrap: break-word;
+    height: 150px;
+}
+
+.filter-container {
+    border: 1px solid, black;
+}
+
+body {
+    position: relative;
+}
+
+#share-btn {
+    border-radius: 50px;
+    position: fixed;
+    right: 5%;
+    bottom: 10%;
+    padding: 20px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+#share-btn:hover {
+    
+    background-color: lightgrey;
+    cursor: help;
+}
