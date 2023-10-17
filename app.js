@@ -22,8 +22,6 @@ app.get('/', (req, res) => {
     res.render('index', { title: 'Welcome to BCR' })
 })
 
-
-
 app.get('/home', (req, res) => {
     res.render('home', { title: 'Home' })
 })

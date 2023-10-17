@@ -22,7 +22,7 @@
             <div class="container">
                 <div class="form">
                     <h2>Register</h2>
-                    <form id = "loginform" action=/login method="post" name = "form1">
+                    <form id = "signupform" action=/signup method="post" name = "form1">
                         <div class="inputBox">
                             <input type="text" placeholder="User name" name="name" id="name">
  
@@ -36,7 +36,7 @@
 
                         </div>
                         <div class="inputBox">
-                            <input type="password" placeholder="Enter the password again" name="password" id="repassword">
+                            <input type="password" placeholder="Enter the password again" name="repassword" id="repassword">
  
                         </div>	
                         <div class="inputBox">
@@ -82,7 +82,7 @@
 
     $().ready(function() {
     // Validate submit form after keyboard press and release and submit
-    $("#loginform").validate({
+    $("#signupform").validate({
         rules: {
         name: "required",//name
         email: "required",

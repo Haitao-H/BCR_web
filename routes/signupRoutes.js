@@ -6,12 +6,13 @@ router.get('/signup', (req, res) => {
     res.render('signup', { title: 'signup' })
 })
 
-router.post('/login',(req, res) => {
+router.post('/signup',(req, res) => {
     console.log(req.body);
     const userData={
-        name:req.body.username,
+        name:req.body.name,
+        email:req.body.email,
         password:req.body.password,
-        password2:req.body.password_again
+        repassword:req.body.repassword
     }
 
     console.log(userData);
