@@ -48,3 +48,37 @@ body {
     background-color: lightgrey;
     cursor: help;
 }
+
+
+/* filter collapsible style */
+
+.collapsible{
+    cursor: pointer;
+    padding: 10px;
+    background-color: lightblue;
+    margin: 5px 10px;
+}
+
+.active, .collapsible:hover{
+    background-color: lightgray;
+}
+
+.box-selector{
+    padding: 0 15px;
+    display: block;
+    overflow: hidden;
+    max-height: 0px;
+    transition: max-height 0.2s ease-out;
+}
+
+.collapsible:after {
+    content: '\002B';
+    color: gray;
+    font-weight: bold;
+    float: right;
+    margin-left: 10px;
+  }
+  
+  .active:after {
+    content: "\2212";
+  }
