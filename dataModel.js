@@ -1,12 +1,20 @@
 const mongoose = require('mongoose');
 
 const dataSchema = new mongoose.Schema({
-    dataId: {type: String, require:true},
-    year: {type: Number, require:true},
-    isCrab: {type: Number, require:true},
-    isParrot: {type: Number, require:true}
+    dataId: { type: String, required: true },
+    year: { type: Number, required: true },
+    isCrab: { type: Number, required: true },
+    isParrot: { type: Number, required: true }
 })
 
-module.exports = mongoose.model('data', dataSchema);
+const userSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    email: { type: String, unique: true, required: true },
+    password: { type: String, required: true }
+})
+
+const Data = mongoose.model('dataSchema', dataSchema);
+const User = mongoose.model('userSchema', userSchema);
+module.exports = { Data, User };
 
 
