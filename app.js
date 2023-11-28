@@ -18,9 +18,14 @@ app.listen(3000, () => {
     console.log('Server listening on port 3000...');
 })
 
+app.use('/', loginRoutes);
+app.use('/', signupRoutes);
+
 app.get('/', (req, res) => {
     res.render('index', { title: 'Welcome to BCR' })
 })
+
+
 
 app.get('/home', (req, res) => {
     res.render('home', { title: 'Home' })
@@ -35,8 +40,7 @@ app.get('/contact', (req, res) => {
 })
 
 
-app.use('/', loginRoutes);
-app.use('/', signupRoutes);
+
 
 app.use('/media', mediaRoutes);
 

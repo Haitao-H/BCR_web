@@ -1,6 +1,6 @@
 // connect to mongoose database
 const mongoose = require('mongoose');
-const dbURL = 'mongodb+srv://test123:111.222@cluster0.clhvebl.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp';
+const dbURL = 'mongodb+srv://Jerry:789852@cluster0.7hj59wi.mongodb.net/?retryWrites=true&w=majority';
 
 const dbConnect = () => {
     mongoose.connect(dbURL)

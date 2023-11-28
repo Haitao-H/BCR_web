@@ -1,5 +1,3 @@
-// filter function
-
 const boxSelector = document.querySelectorAll('.box-selector');
 
 
@@ -33,17 +31,21 @@ filterData();
 function filterData() {
     const species = getFilter('species');
     const year = getFilter('year');
-    // console.log(species)
-    // console.log(year)
+    const date = getFilter('date');
+    const url = getFilter('url');
+    const format = getFilter('format')
+    console.log(species)
+    console.log(year)
 
-
-    // show all the result for the resources
     $.ajax({
         url: '/media/result',
         method: 'GET',
         data: {
             species,
-            year
+            year,
+            date,
+            url, 
+            format
         },
         success: function (result) {
             let html = ``;
@@ -52,14 +54,22 @@ function filterData() {
                 // console.log(data);
                 data.forEach((record) => {
 
-                    html += `<div class="single-record">${record._id}`
+                    html += `<div class="single-record">`
+                    if(record.type=="image"){
+                        html += `<img src="${record.url}">`
+                    }
+                    if(record.format=="audio"){
+                        html += `<audio controls>
+                        <source src="${record.url}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                        </audio>`
+                    }
+                    html+= `<h4>${record.year}.${record.month}.${record.day} </h4>
+                            <h4>${record.commonName} </h4>
+                            <h4>${record.locality}</h4></div>`
                     
-                    html+= `<h4>${record.species}</h4>
-                            <h4>${record.year}</h4>
-                            <h4>${record.location}</h4>
-                            <h4>${record.media}</h4>
-                            </div>`
-                    // console.log(record)
+
+                    // console.log(record);
                 })
 
             }
@@ -84,10 +94,6 @@ document.addEventListener('click', function (e) {
         filterData();
     }
 })
-
-
-
-
 
 
 // collapsible content

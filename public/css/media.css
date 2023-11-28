@@ -4,7 +4,29 @@ button {
 
 }
 
-botton:hover {}
+img {
+    width: 120px; 
+    height: auto; 
+}
+
+audio {
+    width: 200px;
+  }
+  
+  audio::-webkit-media-controls-play-button,
+  audio::-webkit-media-controls-pause-button {
+    font-size: 14px;
+  }
+  
+  audio::-webkit-media-controls-volume-slider {
+    display: none;
+  }
+  
+  audio::-webkit-media-controls-panel {
+    background-color: #9b8a49;
+  }
+
+/* botton:hover {} */
 
 .main-container {
     display: grid;
@@ -31,6 +53,7 @@ botton:hover {}
 
 body {
     position: relative;
+    
 }
 
 #share-btn {

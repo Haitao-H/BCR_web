@@ -1,16 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const Data = require('../dataModel');
+const {bcrData} = require('../dataModel');
 
-const categoryList = ['species', 'year'];
-
+const categoryList = ['species', 'format', 'year'];
 
 const getMedia = async (req, res) => {
-    const { species, year } = req.query;
+    const { species, format, year } = req.query;
+
     let filter = `{`;
     if (species) {
         if (species == ('crab')) {
-            filter += `"iscrab": 1 ,`
+            filter += `"isCrab": 1 ,`
         }
         if (species == ('parrot')) {
             filter += `"isParrot": 1 ,`
@@ -19,15 +19,22 @@ const getMedia = async (req, res) => {
     if (year) {
         filter += `"year": [${year}],`;
     }
-
+    if (format) {
+        if (format == ('audio')) {
+            filter += `"format": ["${format}"],`;
+        }
+        if (format == ('image')) {
+            filter += `"format": ["${format}"],`;
+        }
+    }    
     if (filter[filter.length - 1] === ',') {
         filter = filter.substring(0, filter.length - 1)
     }
     filter += `}`;
-
+    
     // console.log(filter)
 
-    await Data.find(JSON.parse(filter))
+    await bcrData.find(JSON.parse(filter)).skip(0).limit(20)
         .then((result) => {
             res.json({
                 message:'success',
@@ -38,9 +45,26 @@ const getMedia = async (req, res) => {
 }
 
 
+
 const goToMedia = (req, res) => {
 
     res.render('media', { title: 'media' })
+}
+
+const getAllFormat = (req, res) => {
+    bcrData.collection.distinct('format', (error, data) => {
+        if (data.length > 0) {
+            res.json({
+                message: 'success',
+                data: data
+            })
+        } else {
+            res.json({
+                message: 'not found',
+                data: []
+            })
+        }
+    })
 }
 
 const getAllCategory = (req, res) => {
@@ -60,7 +84,7 @@ const getAllSpecies = (req, res) => {
 
 
 const getAllYear = (req, res) => {
-    Data.collection.distinct('year', (error, data) => {
+    bcrData.collection.distinct('year', (error, data) => {
         if (data.length > 0) {
             res.json({
                 message: 'success',
@@ -81,5 +105,5 @@ const share =  (req, res) => {
 
 
 module.exports = {
-    getMedia, getAllCategory, getAllSpecies, getAllYear, goToMedia, share
+    getMedia, getAllFormat, getAllCategory, getAllSpecies, getAllYear, goToMedia, share
 };
