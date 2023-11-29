@@ -5,6 +5,7 @@ fetch('/media/category')
     .then((res) => res.json())
     .then((data) => {
         let categoryList = data.data;
+        console.log(categoryList);
 
         for (let i = 0; i < categoryList.length; i++) {
             let endpoint = '/media/' + categoryList[i];
@@ -34,8 +35,6 @@ function filterData() {
     const date = getFilter('date');
     const url = getFilter('url');
     const format = getFilter('format')
-    console.log(species)
-    console.log(year)
 
     $.ajax({
         url: '/media/result',
