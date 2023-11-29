@@ -2,13 +2,13 @@
 <html>
 
 <head>
-    <%- include('partials/head') %>
     <link rel='stylesheet' href='/css/style.css'/>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
         }
     </style>
+    <title>Register</title>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
             <div class="container">
                 <div class="form">
                     <h2>Register</h2>
-                    <form id = "signupform" action=/signup method="post" name = "form1">
+                    <form id = "registerform" action=/register method="post" name = "form1">
                         <div class="inputBox">
                             <input type="text" placeholder="User name" name="name" id="name">
  
@@ -82,7 +82,7 @@
 
     $().ready(function() {
     // Validate submit form after keyboard press and release and submit
-    $("#signupform").validate({
+    $("#registerform").validate({
         rules: {
         name: "required",//name
         email: "required",

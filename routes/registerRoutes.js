@@ -4,11 +4,11 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const dataModel = require('../dataModel');
 
-router.get('/signup', (req, res) => {
-    res.render('signup', { title: 'signup' })
+router.get('/register', (req, res) => {
+    res.render('register', { title: 'register' })
 })
 
-router.post('/signup', async(req, res) => {
+router.post('/register', async(req, res) => {
     const { name, email, password } = req.body;
     try{
         const existingUser = await dataModel.User.findOne({email});
@@ -33,7 +33,7 @@ router.post('/signup', async(req, res) => {
     }catch(err) {
         console.error(err);
         console.log('Registration failed');
-        res.render('signup', {title:'Signup'});
+        res.render('register', {title:'register'});
     }
     //res.render('login', { title: 'Login' })
 });

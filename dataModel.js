@@ -65,7 +65,7 @@ const userSchema = new mongoose.Schema({
 })
 
 
-const User = mongoose.model('userSchema', userSchema);
+const User = mongoose.model('user', userSchema);
 const bcrData = mongoose.model('bcrData', bcrSchema);
 const testData = mongoose.model('Data', testSchema);
 

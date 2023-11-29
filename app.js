@@ -1,7 +1,7 @@
 const express = require('express');
 const dbconnect = require('./dbConnect');
 const mediaRoutes = require('./routes/mediaRoutes');
-const signupRoutes = require('./routes/signupRoutes');
+const registerRoutes = require('./routes/registerRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 
 const app = express();
@@ -14,12 +14,21 @@ app.use(express.urlencoded({ extended: true}));
 // connect to the database
 dbconnect();
 
+// middleware
+const isAuth = (req, res, next) => {
+    if(req.session.user){
+        next();
+    }else{
+        return res.render('register');
+    }
+}
+
 app.listen(3000, () => {
     console.log('Server listening on port 3000...(http://localhost:3000/)');
 })
 
 app.use('/', loginRoutes);
-app.use('/', signupRoutes);
+app.use('/', registerRoutes);
 
 app.get('/', (req, res) => {
     res.render('index', { title: 'Welcome to BCR' })
@@ -42,7 +51,7 @@ app.get('/contact', (req, res) => {
 
 
 
-app.use('/media', mediaRoutes);
+app.use('/media', isAuth, mediaRoutes);
 
 app.use((req, res) => {
     res.status(404).render('404', { title: 'Page Not Found' })
