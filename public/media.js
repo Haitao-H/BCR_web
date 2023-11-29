@@ -55,18 +55,20 @@ function filterData() {
                 data.forEach((record) => {
 
                     html += `<div class="single-record">`
-                    if(record.type=="image"){
-                        html += `<img src="${record.url}">`
+                    if(record.url){
+                        if(record.format=="Photo"){
+                            html += `<img src="${record.url}">`
+                        }
+                        if(record.format=="audio"){
+                            html += `<audio controls>
+                            <source src="${record.url}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                            </audio>`
+                        }
                     }
-                    if(record.format=="audio"){
-                        html += `<audio controls>
-                        <source src="${record.url}" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                        </audio>`
-                    }
-                    html+= `<h4>${record.year}.${record.month}.${record.day} </h4>
-                            <h4>${record.commonName} </h4>
-                            <h4>${record.locality}</h4></div>`
+                    html+= `<h4>Date: ${record.year}.${record.month}.${record.day} </h4>
+                            <h4>Specie: ${record.commonName} </h4>
+                            <h4>Location: ${record.locality}</h4></div>`
                     
 
                     // console.log(record);
