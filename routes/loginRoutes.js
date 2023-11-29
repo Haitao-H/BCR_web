@@ -6,16 +6,24 @@ const session = require('express-session');
 const dataModel = require('../dataModel');
 
 router.get('/login', (req, res) => {
-    res.render('login', { title: 'login' })
+    console.log(req.session)
+    if (req.session) {
+        res.redirect('/home');
+    } else {
+        res.render('login', { title: 'login' });
+    }
 })
 
 router.use(session({
     secret: 'your-secret-key',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60
+    }
 }));
 
-router.post('/home', async (req,res) => {
+router.post('/home', async (req, res) => {
     const { email, password } = req.body;
 
     try {
@@ -48,6 +56,8 @@ router.post('/home', async (req,res) => {
 
 });
 
+
+// ?????
 router.get('/check-login', (req, res) => {
     if (req.session.user) {
         res.send('user already log in');

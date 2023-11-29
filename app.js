@@ -19,7 +19,7 @@ const isAuth = (req, res, next) => {
     if(req.session.user){
         next();
     }else{
-        return res.render('register');
+        return res.render('login');
     }
 }
 
