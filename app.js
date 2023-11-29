@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true}));
 dbconnect();
 
 app.listen(3000, () => {
-    console.log('Server listening on port 3000...');
+    console.log('Server listening on port 3000...(http://localhost:3000/)');
 })
 
 app.use('/', loginRoutes);

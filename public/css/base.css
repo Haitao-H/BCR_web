@@ -45,6 +45,7 @@ body>div {
 
 .topnav a:hover {
     background-color: lightgrey;
+    scale: 1.1;
 }
 
 a:active,
