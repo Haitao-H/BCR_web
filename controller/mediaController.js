@@ -60,22 +60,7 @@ const goToMedia = (req, res) => {
 }
 
 
-// get all format selections for the filter
-const getAllFormat = (req, res) => {
-    bcrData.collection.distinct('format', (error, data) => {
-        if (data.length > 0) {
-            res.json({
-                message: 'success',
-                data: data
-            })
-        } else {
-            res.json({
-                message: 'not found',
-                data: []
-            })
-        }
-    })
-}
+
 
 // get all category selections for the filter
 const getAllCategory = (req, res) => {
@@ -85,17 +70,16 @@ const getAllCategory = (req, res) => {
     })
 }
 
-// get all species selections for the filter
-const getAllSpecies = (req, res) => {
-    res.json({
-        message: 'success',
-        data: ['crab', 'parrot']
-    })
-}
+// get all selectors for the filter
+const getAllSelector = (req, res) => {
+    let filter = req.params.filter;
 
-// get all year selections for the filter
-const getAllYear = (req, res) => {
-    bcrData.collection.distinct('year', (error, data) => {
+    // get all the species(=commonName in DB)
+    if(filter == "species"){
+        filter ="commonName";
+    }
+
+    bcrData.collection.distinct(filter, (error, data) => {
         if (data.length > 0) {
             res.json({
                 message: 'success',
@@ -110,11 +94,13 @@ const getAllYear = (req, res) => {
     })
 }
 
+
+
 const share = (req, res) => {
     res.render('share', { title: 'Share' })
 }
 
 
 module.exports = {
-    getMedia, getAllFormat, getAllCategory, getAllSpecies, getAllYear, goToMedia, share
+    getMedia, getAllCategory,getAllSelector, goToMedia, share
 };

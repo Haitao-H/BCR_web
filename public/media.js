@@ -9,6 +9,7 @@ fetch('/media/category')
 
         for (let i = 0; i < categoryList.length; i++) {
             let endpoint = '/media/' + categoryList[i];
+            console.log(endpoint);
 
             fetch(endpoint)
                 .then((res) => res.json())
@@ -43,7 +44,7 @@ function filterData() {
             species,
             year,
             date,
-            url, 
+            url,
             format
         },
         success: function (result) {
@@ -54,21 +55,21 @@ function filterData() {
                 data.forEach((record) => {
 
                     html += `<div class="single-record">`
-                    if(record.url){
-                        if(record.format=="Photo"){
+                    if (record.url) {
+                        if (record.format == "Photo") {
                             html += `<img src="${record.url}">`
                         }
-                        if(record.format=="audio"){
+                        if (record.format == "audio") {
                             html += `<audio controls>
                             <source src="${record.url}" type="audio/mpeg">
                             Your browser does not support the audio element.
                             </audio>`
                         }
                     }
-                    html+= `<h4>Date: ${record.year}.${record.month}.${record.day} </h4>
+                    html += `<h4>Date: ${record.year}.${record.month}.${record.day} </h4>
                             <h4>Specie: ${record.commonName} </h4>
                             <h4>Location: ${record.locality}</h4></div>`
-                    
+
 
                     // console.log(record);
                 })
@@ -101,15 +102,15 @@ document.addEventListener('click', function (e) {
 
 let collaps = document.getElementsByClassName("collapsible");
 
-for(let i = 0; i<collaps.length; i++){
-    collaps[i].addEventListener("click", function(){
+for (let i = 0; i < collaps.length; i++) {
+    collaps[i].addEventListener("click", function () {
         this.classList.toggle("active");
         let selectors = this.nextElementSibling;
 
-        if (selectors.style.maxHeight){
+        if (selectors.style.maxHeight) {
             selectors.style.maxHeight = null;
-          } else {
+        } else {
             selectors.style.maxHeight = selectors.scrollHeight + "px";
-          }
+        }
     })
 }
