@@ -42,14 +42,28 @@ const getMedia = async (req, res) => {
 
     // console.log(filter)
 
-    await bcrData.find(JSON.parse(filter)).skip(0).limit(20)
+    // get the result after applying the filter
+    const data = await bcrData.find(JSON.parse(filter)).limit(50)
         .then((result) => {
-            res.json({
-                message: 'success',
-                data: result
-            })
+            return result;
         })
         .catch((err) => { console.log(err) });
+    
+    // get the number of result
+    const counter = await bcrData.find(JSON.parse(filter)).count()
+
+    let message;
+    if (data) {
+        message = 'success';
+    } else {
+        message = 'fail';
+    }
+
+    res.json({
+        message: message,
+        data: data,
+        counter: counter
+    })
 }
 
 
@@ -75,8 +89,8 @@ const getAllSelector = (req, res) => {
     let filter = req.params.filter;
 
     // get all the species(=commonName in DB)
-    if(filter == "species"){
-        filter ="commonName";
+    if (filter == "species") {
+        filter = "commonName";
     }
 
     bcrData.collection.distinct(filter, (error, data) => {
@@ -102,5 +116,5 @@ const share = (req, res) => {
 
 
 module.exports = {
-    getMedia, getAllCategory,getAllSelector, goToMedia, share
+    getMedia, getAllCategory, getAllSelector, goToMedia, share
 };

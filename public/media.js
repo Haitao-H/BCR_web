@@ -50,7 +50,12 @@ function filterData() {
         success: function (result) {
             let html = ``;
             if (result.message == 'success') {
-                let data = result.data;
+
+                // get the number of result
+                const counter = result.counter;
+                document.getElementById('status-box').innerText = `Total result: ${counter}`;
+                
+                const data = result.data;
                 // console.log(data);
                 data.forEach((record) => {
 
@@ -74,8 +79,10 @@ function filterData() {
                     // console.log(record);
                 })
 
+            }else{
+                html += `<div style="padding: 20px;">Nothing Found, Please Try Again Later...</div>`
             }
-            document.querySelector('.content-container').innerHTML = html;
+            document.querySelector('.result-container').innerHTML = html;
         }
     })
 
