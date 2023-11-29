@@ -5,16 +5,15 @@ fetch('/media/category')
     .then((res) => res.json())
     .then((data) => {
         let categoryList = data.data;
-        console.log(categoryList);
 
         for (let i = 0; i < categoryList.length; i++) {
             let endpoint = '/media/' + categoryList[i];
             console.log(endpoint);
 
+            // fetch all the selectors in each category
             fetch(endpoint)
                 .then((res) => res.json())
                 .then((data) => {
-                    // console.log(data.data)
                     const list = data.data;
                     let html = ``;
                     list.forEach(element => {
@@ -54,11 +53,9 @@ function filterData() {
                 // get the number of result
                 const counter = result.counter;
                 document.getElementById('status-box').innerText = `Total result: ${counter}`;
-                
-                const data = result.data;
-                // console.log(data);
-                data.forEach((record) => {
 
+                const data = result.data;
+                data.forEach((record) => {
                     html += `<div class="single-record">`
                     if (record.url) {
                         if (record.format == "Photo") {
@@ -74,12 +71,9 @@ function filterData() {
                     html += `<h4>Date: ${record.year}.${record.month}.${record.day} </h4>
                             <h4>Specie: ${record.commonName} </h4>
                             <h4>Location: ${record.locality}</h4></div>`
-
-
-                    // console.log(record);
                 })
 
-            }else{
+            } else {
                 html += `<div style="padding: 20px;">Nothing Found, Please Try Again Later...</div>`
             }
             document.querySelector('.result-container').innerHTML = html;

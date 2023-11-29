@@ -4,79 +4,13 @@ const { bcrData } = require('../dataModel');
 
 const categoryList = ['species', 'format', 'year'];
 
-const getMedia = async (req, res) => {
-    const { species, format, year } = req.query;
-
-    let filter = `{`;
-
-    // check if species selected or not?
-    if (species) {
-        if (species == ('crab')) {
-            filter += `"isCrab": 1 ,`
-        }
-        if (species == ('parrot')) {
-            filter += `"isParrot": 1 ,`
-        }
-    }
-
-    // check if format selected or not?
-    if (format) {
-        if (format == ('audio')) {
-            filter += `"format": ["${format}"],`;
-        }
-        if (format == ('image')) {
-            filter += `"format": ["${format}"],`;
-        }
-    }
-
-    // check if year selected or not?
-    if (year) {
-        filter += `"year": [${year}],`;
-    }
-
-
-    if (filter[filter.length - 1] === ',') {
-        filter = filter.substring(0, filter.length - 1)
-    }
-    filter += `}`;
-
-    // console.log(filter)
-
-    // get the result after applying the filter
-    const data = await bcrData.find(JSON.parse(filter)).limit(50)
-        .then((result) => {
-            return result;
-        })
-        .catch((err) => { console.log(err) });
-    
-    // get the number of result
-    const counter = await bcrData.find(JSON.parse(filter)).count()
-
-    let message;
-    if (data) {
-        message = 'success';
-    } else {
-        message = 'fail';
-    }
-
-    res.json({
-        message: message,
-        data: data,
-        counter: counter
-    })
-}
-
-
 
 const goToMedia = (req, res) => {
-
     res.render('media', { title: 'media' })
 }
 
 
-
-
-// get all category selections for the filter
+// get all category for the filter
 const getAllCategory = (req, res) => {
     res.json({
         message: 'success',
@@ -84,11 +18,11 @@ const getAllCategory = (req, res) => {
     })
 }
 
-// get all selectors for the filter
+// get all filter selectors in each category
 const getAllSelector = (req, res) => {
     let filter = req.params.filter;
 
-    // get all the species(=commonName in DB)
+    // species(frontend) = commonName(DB)
     if (filter == "species") {
         filter = "commonName";
     }
@@ -108,6 +42,59 @@ const getAllSelector = (req, res) => {
     })
 }
 
+// get the result
+const getMedia = async (req, res) => {
+
+    const { species, format, year } = req.query;
+    let filter = `{`;
+
+    // apply filter to species?
+    if (species) {
+        filter += `"commonName": ["${species}"],`;
+    }
+
+    // apply filter to format?
+    if (format) {
+        filter += `"format": ["${format}"],`;
+    }
+
+    // apply filter to year?
+    if (year) {
+        filter += `"year": [${year}],`;
+    }
+
+    // get rid of the last ','
+    if (filter[filter.length - 1] === ',') {
+        filter = filter.substring(0, filter.length - 1)
+    }
+
+    filter += `}`;
+    console.log(filter)
+
+    // get the result after applying the filter
+    const data = await bcrData.find(JSON.parse(filter)).limit(50)
+        .then((result) => {
+            return result;
+        })
+        .catch((err) => { console.log(err) });
+
+    // get the number of result
+    const counter = await bcrData.find(JSON.parse(filter)).count()
+
+    let message;
+    if (data) {
+        message = 'success';
+    } else {
+        message = 'fail';
+    }
+
+    // return all needed data
+    res.json({
+        message: message,
+        data: data,
+        counter: counter
+    })
+}
 
 
 const share = (req, res) => {
