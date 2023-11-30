@@ -28,9 +28,9 @@ router.post('/home', async (req, res) => {
         const user = await dataModel.User.findOne({ email: email });
 
         if (!user) {
-            res.status(401).send('no account match');
-            //console.log('no account match:'+email);
-            return;
+            // no account match
+            return res.status(401).render('login', { title: 'login', message: "no account match"});
+            
         }
         console.log("account match")
 
@@ -43,8 +43,7 @@ router.post('/home', async (req, res) => {
             //res.send('log in success');
             res.redirect('/home');
         } else {
-            console.log('Password does not match for email: ' + email);
-            res.status(401).send('password wrong');
+            res.status(401).render('login', { title: 'login', message: "wrong password"});
         }
     } catch (error) {
         console.error(error);
