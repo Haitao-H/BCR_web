@@ -3,9 +3,7 @@ const session = require('express-session');
 const dbconnect = require('./dbConnect');
 const middleware = require('./middleware');
 const mediaRoutes = require('./routes/mediaRoutes');
-const registerRoutes = require('./routes/registerRoutes');
-const loginRoutes = require('./routes/loginRoutes');
-const resetPasswordRouter = require('./routes/resetPassword');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 
@@ -32,9 +30,7 @@ app.listen(3000, () => {
     console.log('Server listening on port 3000...(http://localhost:3000/)');
 })
 
-app.use('/', loginRoutes);
-app.use('/', registerRoutes);
-app.use('/', resetPasswordRouter);
+app.use('/', authRoutes);
 
 app.use('/media', middleware.isAuth, mediaRoutes);
 
