@@ -61,7 +61,7 @@ function filterData() {
                         if (record.format == "Photo") {
                             html += `<img src="${record.url}">`
                         }
-                        if (record.format == "audio") {
+                        if (record.format == "Audio") {
                             html += `<audio controls>
                             <source src="${record.url}" type="audio/mpeg">
                             Your browser does not support the audio element.
