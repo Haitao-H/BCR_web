@@ -13,6 +13,13 @@ router.get('/login', (req, res) => {
     }
 })
 
+router.post('/logout', (req, res)=> {
+    req.session.destroy((err)=>{
+        if(err) console.log(err);
+        res.redirect('/');
+    })
+})
+
 router.post('/home', async (req, res) => {
     const { email, password } = req.body;
 
@@ -34,7 +41,7 @@ router.post('/home', async (req, res) => {
             // user already log in
             req.session.user = user;
             //res.send('log in success');
-            res.render('home', { title: 'Home' })
+            res.redirect('/home');
         } else {
             console.log('Password does not match for email: ' + email);
             res.status(401).send('password wrong');

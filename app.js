@@ -40,6 +40,14 @@ app.get('/', (req, res) => {
 })
 
 app.get('/home', (req, res) => {
+    if(req.session.user){
+        const userInfo = {
+            name: req.session.user.name,
+            email: req.session.user.email
+        };
+        console.log(userInfo);
+        return res.render('home', { title: 'Home', userInfo: userInfo})
+    }
     res.render('home', { title: 'Home' })
 })
 

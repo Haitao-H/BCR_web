@@ -3,17 +3,46 @@
 
 <head>
     <%- include('partials/head') %>
+        <style>
+            .user-panel {
+                float: left;
+                width: 25%;
+                align-items: center;
+                padding: 15px;
+                border: 1px solid #ccc;
+                border-radius: 15px;
+                background-color: #f5f5f5;
+            }
+
+            .logout-btn{
+                float: right;
+            }
+        </style>
 </head>
 
 <body>
 
     <%- include('partials/topnav') %>
 
-    <div class="main-container">
+        <div class="main-container">
+            <% if(JSON.stringify(locals, null, 2).includes('userInfo')) {%>
+                <div class="user-panel">
+                    <div class="user-info">
+                        <h3>
+                            <%=userInfo.name%>
+                        </h3>
+                        <p>Email: <%=userInfo.email%>
+                        </p>
+                    </div>
+                    <form action="/logout" method="post">
+                        <button class="logout-btn">Logout</button>
+                    </form>
+                </div>
+                
+                <%}%>
+        </div>
 
-    </div>
-
-    <%- include('partials/footer') %>
+        <%- include('partials/footer') %>
 
 </body>
 
