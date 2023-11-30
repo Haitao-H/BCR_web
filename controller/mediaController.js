@@ -50,12 +50,12 @@ const getMedia = async (req, res) => {
 
     // apply filter to species?
     if (species) {
-        filter += `"commonName": ["${species}"],`;
+        filter += `"commonName": [${species}],`;
     }
 
     // apply filter to format?
     if (format) {
-        filter += `"format": ["${format}"],`;
+        filter += `"format": [${format}],`;
     }
 
     // apply filter to year?

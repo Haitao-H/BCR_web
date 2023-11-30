@@ -87,8 +87,11 @@ function getFilter(className) {
     let filter = [];
     let commonSelector = document.querySelectorAll(`.common-selector.${className}:checked`);
     commonSelector.forEach((e) => {
-        filter.push(e.value);
+        let element = `"${e.value}"`;
+        filter.push(element);
     })
+
+    
     return filter;
 }
 
