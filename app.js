@@ -5,6 +5,7 @@ const middleware = require('./middleware');
 const mediaRoutes = require('./routes/mediaRoutes');
 const registerRoutes = require('./routes/registerRoutes');
 const loginRoutes = require('./routes/loginRoutes');
+const resetPasswordRouter = require('./routes/resetPassword');
 
 const app = express();
 
@@ -33,6 +34,8 @@ app.listen(3000, () => {
 
 app.use('/', loginRoutes);
 app.use('/', registerRoutes);
+app.use('/', resetPasswordRouter);
+
 app.use('/media', middleware.isAuth, mediaRoutes);
 
 app.get('/', (req, res) => {
