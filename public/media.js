@@ -62,7 +62,7 @@ function filterData() {
                             html += `<img src="${record.url}">`
                         }
                         if (record.format == "Audio") {
-                            html += `<audio controls>
+                            html += `<audio controls style="width: 60%;">
                             <source src="${record.url}" type="audio/mpeg">
                             Your browser does not support the audio element.
                             </audio>`
