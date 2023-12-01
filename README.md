@@ -5,3 +5,16 @@ search, filter, and retrieve these videos based on various aspects such as resea
 type, and animal behavior etc. The objective is to enhance the accessibility and usability of these 
 valuable animal recording media, and encourage related users to share any valuable resource 
 with us.
+
+
+
+# github commond
+
+<!-- create and switch to a new branch -->
+git checkout -b hw
+
+git add *
+
+git commit -m "message'
+
+git push origin <branch name>
