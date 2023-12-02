@@ -3,6 +3,10 @@ button {
     height: 30px;
 
 }
+video {
+    width: 80%; 
+    max-width: 800px;
+}
 
 img {
     width: 120px;
@@ -55,7 +59,7 @@ audio::-webkit-media-controls-panel {
     padding: 30px;
     text-align: center;
     overflow-wrap: break-word;
-    height: 220px;
+    height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: rgba(213, 197, 197, 0.1);
