@@ -36,8 +36,6 @@ filterData();
 function filterData() {
     const species = getFilter('species');
     const year = getFilter('year');
-    const date = getFilter('date');
-    const url = getFilter('url');
     const format = getFilter('format')
 
     const page = document.getElementById('current');
@@ -52,8 +50,6 @@ function filterData() {
         data: {
             species,
             year,
-            date,
-            url,
             format,
             page: currentPage,
             limit
