@@ -69,7 +69,7 @@ const getMedia = async (req, res) => {
     }
 
     filter += `}`;
-    console.log(filter)
+    // console.log(filter)
 
     // get the result after applying the filter
     const data = await bcrData.find(JSON.parse(filter)).limit(50)

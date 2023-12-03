@@ -1,9 +1,11 @@
 const express = require('express');
 const session = require('express-session');
 const dbconnect = require('./dbConnect');
+const path = require('path');
 const middleware = require('./middleware');
 const mediaRoutes = require('./routes/mediaRoutes');
 const authRoutes = require('./routes/authRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
 
 const app = express();
 
@@ -31,8 +33,8 @@ app.listen(3000, () => {
 })
 
 app.use('/', authRoutes);
-
 app.use('/media', middleware.isAuth, mediaRoutes);
+app.use('/upload', uploadRoutes)
 
 app.get('/', (req, res) => {
     res.render('index', { title: 'Welcome to BCR' })
