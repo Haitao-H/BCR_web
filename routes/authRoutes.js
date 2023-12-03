@@ -6,7 +6,7 @@ const session = require('express-session');
 const dataModel = require('../dataModel');
 
 // referral code
-const refCode =666;
+const refCode = 666;
 
 
 // login logic
@@ -18,9 +18,9 @@ router.get('/login', (req, res) => {
     }
 })
 
-router.post('/logout', (req, res)=> {
-    req.session.destroy((err)=>{
-        if(err) console.log(err);
+router.post('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) console.log(err);
         res.redirect('/');
     })
 })
@@ -34,8 +34,8 @@ router.post('/home', async (req, res) => {
 
         if (!user) {
             // no account match
-            return res.status(401).render('login', { title: 'login', message: "no account match"});
-            
+            return res.status(401).render('login', { title: 'login', message: "no account match" });
+
         }
         console.log("account match")
 
@@ -48,7 +48,7 @@ router.post('/home', async (req, res) => {
             //res.send('log in success');
             res.redirect('/home');
         } else {
-            res.status(401).render('login', { title: 'login', message: "wrong password"});
+            res.status(401).render('login', { title: 'login', message: "wrong password" });
         }
     } catch (error) {
         console.error(error);
@@ -64,6 +64,7 @@ router.get('/register', (req, res) => {
 })
 
 router.post('/register', async (req, res) => {
+    console.log(typeof req.body.code);
     let { name, email, password, code } = req.body;
     try {
         const existingUser = await dataModel.User.findOne({ email });
@@ -74,9 +75,9 @@ router.post('/register', async (req, res) => {
         }
 
         // verify the access level
-        if (code===refCode){
-            code=refCode;
-        }else{
+        if (code == refCode) {
+            code = refCode;
+        } else {
             code = 111;
         }
 
@@ -88,7 +89,7 @@ router.post('/register', async (req, res) => {
             level: code
         });
         console.log(user);
-        
+
         user.save()
             .then(() => {
                 console.log('User registered successfully');
