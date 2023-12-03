@@ -32,7 +32,8 @@ app.listen(3000, () => {
 
 app.use('/', authRoutes);
 
-app.use('/media', middleware.isAuth, mediaRoutes);
+app.use('/media', mediaRoutes);
+// app.use('/media', middleware.isAuth, mediaRoutes);
 
 app.get('/', (req, res) => {
     res.render('index', { title: 'Welcome to BCR' })

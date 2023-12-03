@@ -18,7 +18,7 @@ const getAllCategory = (req, res) => {
     })
 }
 
-// get all filter selectors in each category
+// get filter selectors in each category
 const getAllSelector = (req, res) => {
     let filter = req.params.filter;
 
@@ -44,21 +44,23 @@ const getAllSelector = (req, res) => {
 
 // get the result
 const getMedia = async (req, res) => {
-
+    console.log(req.query);
+    
+    // get the filter
     const { species, format, year } = req.query;
     let filter = `{`;
 
-    // apply filter to species?
+    // add species to the filter?
     if (species) {
         filter += `"commonName": [${species}],`;
     }
 
-    // apply filter to format?
+    // add format to the filter?
     if (format) {
         filter += `"format": [${format}],`;
     }
 
-    // apply filter to year?
+    // add year to the filter?
     if (year) {
         filter += `"year": [${year}],`;
     }
@@ -69,10 +71,14 @@ const getMedia = async (req, res) => {
     }
 
     filter += `}`;
-    console.log(filter)
+    // console.log(filter)
 
-    // get the result after applying the filter
-    const data = await bcrData.find(JSON.parse(filter)).limit(50)
+    const page = req.query.page;
+    const limit = req.query.limit;
+
+
+    // get the result after applying the filter 
+    const data = await bcrData.find(JSON.parse(filter)).skip((page-1)*10).limit(limit)
         .then((result) => {
             return result;
         })

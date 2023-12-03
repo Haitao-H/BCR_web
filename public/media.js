@@ -1,6 +1,6 @@
 const boxSelector = document.querySelectorAll('.box-selector');
 
-
+// fetch selectors in the filter content
 fetch('/media/category')
     .then((res) => res.json())
     .then((data) => {
@@ -8,7 +8,7 @@ fetch('/media/category')
 
         for (let i = 0; i < categoryList.length; i++) {
             let endpoint = '/media/' + categoryList[i];
-            console.log(endpoint);
+            // console.log(endpoint);
 
             // fetch all the selectors in each category
             fetch(endpoint)
@@ -27,6 +27,10 @@ fetch('/media/category')
 
     });
 
+
+
+// send query to the server
+
 filterData();
 
 function filterData() {
@@ -36,6 +40,12 @@ function filterData() {
     const url = getFilter('url');
     const format = getFilter('format')
 
+    const page = document.getElementById('current');
+    const currentPage = page.innerText;
+    const previous = document.getElementById('previous');
+    const next = document.getElementById('next');
+    const limit = 30;
+
     $.ajax({
         url: '/media/result',
         method: 'GET',
@@ -44,15 +54,23 @@ function filterData() {
             year,
             date,
             url,
-            format
+            format,
+            page: currentPage,
+            limit
         },
         success: function (result) {
+
+            // output the result
             let html = ``;
             if (result.message == 'success') {
 
                 // get the number of result
                 const counter = result.counter;
-                document.getElementById('status-box').innerText = `Total result: ${counter}`;
+                const totalPage = Math.ceil(counter / limit);
+                document.getElementById('status-box').innerHTML = `Total result: <span id="totalResult">${counter}</span>  &emsp; 
+                                                                    Total Page: <span id="totalPage">${totalPage}</span> &emsp; 
+                                                                    Result Per Page: <span id="totalPage">${limit}</span> &emsp; 
+                                                                    Current Page: <span id="currentPage" style="font-weight: bold;">${currentPage}</span>`;
 
                 const data = result.data;
                 data.forEach((record) => {
@@ -73,10 +91,29 @@ function filterData() {
                             <h4>Location: ${record.locality}</h4></div>`
                 })
 
+
+
+                if (totalPage == 1 || currentPage == 1) {
+                    previous.style.display = 'none';
+                } else {
+                    previous.style.display = 'inline-block';
+
+                }
+
+                if (currentPage == totalPage) {
+                    next.style.display = 'none';
+                } else {
+                    next.style.display = 'inline-block';
+
+                }
+
             } else {
                 html += `<div style="padding: 20px;">Nothing Found, Please Try Again Later...</div>`
             }
             document.querySelector('.result-container').innerHTML = html;
+
+
+
         }
     })
 
@@ -91,15 +128,40 @@ function getFilter(className) {
         filter.push(element);
     })
 
-    
     return filter;
 }
 
 document.addEventListener('click', function (e) {
     if (e.target.classList.contains('common-selector')) {
+        document.getElementById('current').innerText = 1;
         filterData();
     }
 })
+
+
+// refresh the pagination button and get the result
+const page = document.getElementById('current');
+
+document.getElementById('previous').addEventListener("click", () => {
+    page.innerText = parseInt(page.innerHTML) - 1;
+    filterData();
+})
+
+document.getElementById('next').addEventListener("click", () => {
+    page.innerText = parseInt(page.innerHTML) + 1;
+    filterData();
+})
+
+document.getElementById('first').addEventListener("click", () => {
+    page.innerText = 1;
+    filterData();
+})
+
+document.getElementById('last').addEventListener("click", () => {
+    page.innerText = document.getElementById('totalPage').innerText;
+    filterData();
+})
+
 
 
 // collapsible content
