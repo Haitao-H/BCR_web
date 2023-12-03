@@ -1,13 +1,5 @@
 const mongoose = require('mongoose');
 
-const testSchema = new mongoose.Schema({
-    url: {type: String, require:true},
-    date: {type: String, require:true},
-    year: {type: Number, require:true},
-    isCrab: {type: Number, require:true},
-    isParrot: {type: Number, require:true},
-    type:{type: String, require:true}
-})
 
 const bcrSchema = new mongoose.Schema({
     id: {type: Number, require:true},
@@ -67,11 +59,9 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('user', userSchema);
 const bcrData = mongoose.model('bcrData', bcrSchema);
-const testData = mongoose.model('Data', testSchema);
 
 
 module.exports = {
-    testData,
     bcrData,
     User
 }

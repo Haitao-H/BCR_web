@@ -80,11 +80,17 @@ function filterData() {
                             html += `<img src="${record.url}">`
                         }
                         if (record.format == "Audio") {
-                            html += `<audio controls style="width: 60%;">
+                            html += `<audio controls  style="width: 60%;">
                             <source src="${record.url}" type="audio/mpeg">
                             Your browser does not support the audio element.
                             </audio>`
-                        }
+                        } 
+                        if (record.format == "Video") {
+                            html += `<video width="200" height="150" controls>
+                            <source src="${record.url}" type="video/mp4">
+                            Your browser does not support the audio element.
+                            </video>`
+                        }             
                     }
                     html += `<h4>Date: ${record.year}.${record.month}.${record.day} </h4>
                             <h4>Specie: ${record.commonName} </h4>
