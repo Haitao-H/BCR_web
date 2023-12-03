@@ -5,6 +5,9 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const dataModel = require('../dataModel');
 
+// referral code
+const refCode =666;
+
 
 // login logic
 router.get('/login', (req, res) => {
@@ -61,7 +64,7 @@ router.get('/register', (req, res) => {
 })
 
 router.post('/register', async (req, res) => {
-    const { name, email, password } = req.body;
+    let { name, email, password, code } = req.body;
     try {
         const existingUser = await dataModel.User.findOne({ email });
 
@@ -70,14 +73,22 @@ router.post('/register', async (req, res) => {
             return res.status(400).render('register', { title: 'register', message: "Email address is already in use" })
         }
 
+        // verify the access level
+        if (code===refCode){
+            code=refCode;
+        }else{
+            code = 111;
+        }
+
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = new dataModel.User({
             name,
             email,
-            password: hashedPassword
+            password: hashedPassword,
+            level: code
         });
         console.log(user);
-
+        
         user.save()
             .then(() => {
                 console.log('User registered successfully');
