@@ -1,6 +1,6 @@
+// fetch selectors in the filter content
 const boxSelector = document.querySelectorAll('.box-selector');
 
-// fetch selectors in the filter content
 fetch('/media/category')
     .then((res) => res.json())
     .then((data) => {

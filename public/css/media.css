@@ -3,8 +3,9 @@ button {
     height: 30px;
 
 }
+
 video {
-    width: 80%; 
+    width: 80%;
     max-width: 800px;
 }
 
@@ -29,7 +30,6 @@ audio::-webkit-media-controls-volume-slider {
 audio::-webkit-media-controls-panel {
     background-color: #9b8a49;
 }
-
 
 .result-container {
     display: grid;
@@ -77,7 +77,6 @@ body {
 }
 
 /* share btn style */
-
 #share-btn {
     border-radius: 50px;
     position: fixed;
@@ -96,7 +95,6 @@ body {
 
 
 /* filter collapsible style */
-
 .collapsible {
     cursor: pointer;
     padding: 10px;
@@ -132,7 +130,6 @@ body {
 
 
 /* pagination style */
-
 .pagination {
     margin-block: 80px;
     text-align: center;

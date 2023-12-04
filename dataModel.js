@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const internal = require('stream');
 
-
 const bcrSchema = new mongoose.Schema({
     id: {type: Number, require:true},
     MLcatalogNum: {type: Number, require:true},
@@ -58,7 +57,6 @@ const userSchema = new mongoose.Schema({
     level:{ type: Number }
 })
 
-
 const User = mongoose.model('user', userSchema);
 const bcrData = mongoose.model('bcrData', bcrSchema);
 
@@ -75,9 +73,7 @@ const bcrData = mongoose.model('bcrData', bcrSchema);
 
 // }
 
-
 module.exports = {
     bcrData,
     User
 }
-
