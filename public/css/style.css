@@ -146,5 +146,5 @@ section .color {
 .forget a {
     color: #236;
     font-weight: 600;
-    text-decoration: none;
+    text-decoration: underline;
 }
