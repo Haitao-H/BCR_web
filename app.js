@@ -5,6 +5,7 @@ const path = require('path');
 const middleware = require('./middleware');
 const mediaRoutes = require('./routes/mediaRoutes');
 const authRoutes = require('./routes/authRoutes');
+const permissionRoutes = require('./routes/permissionRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 
 const app = express();
@@ -35,20 +36,25 @@ app.listen(3000, () => {
 app.use('/', authRoutes);
 app.use('/media', mediaRoutes);
 // app.use('/media', middleware.isAuth, mediaRoutes);
-app.use('/upload', uploadRoutes)
+
+
+// delete single record
+app.use('/delete', permissionRoutes);
+
+app.use('/upload', uploadRoutes);
 
 app.get('/', (req, res) => {
     res.render('index', { title: 'Welcome to BCR' })
 })
 
 app.get('/home', (req, res) => {
-    if(req.session.user){
+    if (req.session.user) {
         const userInfo = {
             name: req.session.user.name,
             email: req.session.user.email
         };
         console.log(userInfo);
-        return res.render('home', { title: 'Home', userInfo: userInfo})
+        return res.render('home', { title: 'Home', userInfo: userInfo })
     }
     res.render('home', { title: 'Home' })
 })

@@ -68,9 +68,16 @@ function filterData() {
                                                                     Result Per Page: <span id="totalPage">${limit}</span> &emsp; 
                                                                     Current Page: <span id="currentPage" style="font-weight: bold;">${currentPage}</span>`;
 
+                const isAdmin = result.isAdmin;
                 const data = result.data;
                 data.forEach((record) => {
                     html += `<div class="single-record">`
+                    if (isAdmin) {
+                        html += `<form action="/delete/${record._id}" method="post" target="_blank">
+                                <button type="submit">Delete</button>
+                                </form>`
+                    }
+
                     if (record.url) {
                         if (record.format == "Photo") {
                             html += `<img src="${record.url}">`
@@ -80,13 +87,13 @@ function filterData() {
                             <source src="${record.url}" type="audio/mpeg">
                             Your browser does not support the audio element.
                             </audio>`
-                        } 
+                        }
                         if (record.format == "Video") {
                             html += `<video width="200" height="150" controls>
                             <source src="${record.url}" type="video/mp4">
                             Your browser does not support the audio element.
                             </video>`
-                        }             
+                        }
                     }
                     html += `<h4>Date: ${record.year}.${record.month}.${record.day} </h4>
                             <h4>Specie: ${record.commonName} </h4>

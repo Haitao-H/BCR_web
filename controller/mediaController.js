@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const router = express.Router();
 const { bcrData } = require('../dataModel');
 
@@ -45,7 +46,7 @@ const getAllSelector = (req, res) => {
 // get the result
 const getMedia = async (req, res) => {
     console.log(req.query);
-    
+
     // get the filter
     const { species, format, year } = req.query;
     let filter = `{`;
@@ -77,10 +78,13 @@ const getMedia = async (req, res) => {
     const limit = req.query.limit;
 
 
+
     // get the result after applying the filter 
-    const data = await bcrData.find(JSON.parse(filter)).skip((page-1)*10).limit(limit)
+    const data = await bcrData.find(JSON.parse(filter)).skip((page - 1) * 10).limit(limit)
         .then((result) => {
+
             return result;
+
         })
         .catch((err) => { console.log(err) });
 
@@ -94,11 +98,20 @@ const getMedia = async (req, res) => {
         message = 'fail';
     }
 
+    // is admin?
+    let isAdmin;
+    if (req.session.user && req.session.user.level == 666) {
+        isAdmin = true;
+    } else {
+        isAdmin = false;
+    }
+
     // return all needed data
     res.json({
         message: message,
         data: data,
-        counter: counter
+        counter: counter,
+        isAdmin: isAdmin
     })
 }
 

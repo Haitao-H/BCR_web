@@ -62,6 +62,19 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('user', userSchema);
 const bcrData = mongoose.model('bcrData', bcrSchema);
 
+// add mock data for delete
+// for(let i = 0; i<2; i=i+1){
+//     let new_data = new bcrData({
+//         format: "Video",
+//         year: 2023,
+//         month: 12,
+//         day: 3,
+//         commonName: `test video ${i}`
+//     });
+//     new_data.save();
+
+// }
+
 
 module.exports = {
     bcrData,
