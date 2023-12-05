@@ -14,7 +14,7 @@ routes.get('/', async (req, res) => {
             console.error(err);
         }
     }
-    res.render('contact', { title: 'Contact', jsonData })
+    res.render('contact', { title: 'Contact' })
 });
 
 routes.post('/submit', (req, res) => {

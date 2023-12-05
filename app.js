@@ -41,10 +41,6 @@ app.use('/upload', uploadRoutes);
 app.use('/home', homeRoutes);
 app.use('/contact', contactRoutes);
 
-app.get('/', (req, res) => {
-    res.render('index', { title: 'Welcome to BCR' })
-});
-
 app.get('/about', (req, res) => {
     res.render('about', { title: 'About' })
 });

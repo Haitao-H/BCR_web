@@ -58,10 +58,9 @@ const { bcrData } = require('../dataModel');
 
 router.post('/:objId', (req, res) => {
     const objId = req.params.objId;
-    console.log(objId);
     bcrData.deleteOne({ _id: objId })
         .then(function () {
-            console.log("Data deleted");
+            console.log(`${objId} deleted`);
             res.redirect('/home');
         }).catch(function (error) {
             console.log(error); 

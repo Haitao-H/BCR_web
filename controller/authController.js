@@ -11,6 +11,14 @@ const refCode = 666;              //
 // --------   referral code -------- 
 
 
+const indexPage = (req, res) => {
+    if (req.session.user) {
+        res.redirect('/home');
+    } else {
+        res.render('index', { title: 'Welcome to BCR' })
+    }
+}
+
 // check login session and redirect to home page
 const loginCheck = (req, res) => {
     if (req.session.user) {
@@ -93,12 +101,12 @@ const resetPost = async (req, res) => {
         // check the user email
         const user = await dataModel.User.findOne({ email });
         if (!user) {
-            return res.status(404).render('resetPassword', {message: "no account match" });
+            return res.status(404).render('resetPassword', { message: "no account match" });
         }
         // cehck the name for this user
         const passwordMatch = await bcrypt.compare(newPassword, user.password);
-        if (name!= user.name) {
-            return res.status(401).render('resetPassword', {message: "wrong name" });
+        if (name != user.name) {
+            return res.status(401).render('resetPassword', { message: "wrong name" });
         }
         // update password
         const hashedPassword = await bcrypt.hash(newPassword, 10);
@@ -107,7 +115,7 @@ const resetPost = async (req, res) => {
         res.status(200).render('login', { title: 'login', message: "Reset Successfully" });
     } catch (error) {
         console.error(error);
-        res.status(500).render('resetPassword', {message: "Internal Server Error, Please Try Again" });
+        res.status(500).render('resetPassword', { message: "Internal Server Error, Please Try Again" });
     }
 }
 
@@ -121,5 +129,5 @@ const logoutPost = (req, res) => {
 
 
 module.exports = {
-    renderRegister, renderReset, loginCheck, registerPost, logoutPost, loginPost, resetPost
+    indexPage, renderRegister, renderReset, loginCheck, registerPost, logoutPost, loginPost, resetPost
 };

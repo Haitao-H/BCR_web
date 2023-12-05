@@ -1,0 +1,69 @@
+/* contact form style */
+.container {
+    max-width: 600px;
+    margin: 100px auto;
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+form {
+    display: grid;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px;
+    background-color: #00aaff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: lightblue;
+}
+
+
+/* admin unread messsage card style */
+.unread-message-card {
+    padding: 20px;
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    margin: 20px 20px 40px 20px;
+}
+
+.unread-message-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.label {
+    font-weight: bold;
+}
+
+.message {
+    font-style: italic;
+}
