@@ -8,6 +8,7 @@ const authRoutes = require('./routes/authRoutes');
 const permissionRoutes = require('./routes/permissionRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const homeRoutes = require('./routes/homeRoutes');
+const contactRoutes = require('./routes/contactRoutes');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -38,6 +39,7 @@ app.use('/media', mediaRoutes);
 app.use('/delete', permissionRoutes);
 app.use('/upload', uploadRoutes);
 app.use('/home', homeRoutes);
+app.use('/contact', contactRoutes);
 
 app.get('/', (req, res) => {
     res.render('index', { title: 'Welcome to BCR' })
@@ -45,10 +47,6 @@ app.get('/', (req, res) => {
 
 app.get('/about', (req, res) => {
     res.render('about', { title: 'About' })
-});
-
-app.get('/contact', (req, res) => {
-    res.render('contact', { title: 'Contact' })
 });
 
 // 404 page
