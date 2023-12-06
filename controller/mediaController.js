@@ -45,7 +45,7 @@ const getAllSelector = (req, res) => {
 
 // get the result
 const getMedia = async (req, res) => {
-    console.log(req.query);
+    // console.log(req.query);
 
     // get the filter
     const { species, format, year } = req.query;
