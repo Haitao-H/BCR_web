@@ -11,7 +11,7 @@ with us.
 # github commond
 
 <!-- create and switch to a new branch -->
-git checkout -b hw
+git checkout <branch>
 
 git add *
 
