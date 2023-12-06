@@ -65,7 +65,7 @@ function filterData() {
                 const totalPage = Math.ceil(counter / limit);
                 document.getElementById('status-box').innerHTML = `Total result: <span id="totalResult">${counter}</span>  &emsp; 
                                                                     Total Page: <span id="totalPage">${totalPage}</span> &emsp; 
-                                                                    Result Per Page: <span id="totalPage">${limit}</span> &emsp; 
+                                                                    Limit: <span id="totalPage">${limit}/page</span> &emsp; 
                                                                     Current Page: <span id="currentPage" style="font-weight: bold;">${currentPage}</span>`;
 
                 const isAdmin = result.isAdmin;
@@ -73,8 +73,8 @@ function filterData() {
                 data.forEach((record) => {
                     html += `<div class="single-record">`
                     if (isAdmin) {
-                        html += `<form action="/delete/media/${record._id}" method="post" target="_blank">
-                                <button type="submit">Delete</button>
+                        html += `<form action="/delete/media/${record._id}" method="post" onsubmit="return confirmSubmission()">
+                                <button class="delete-button" type="submit">Delete</button>
                                 </form>`
                     }
 
@@ -138,6 +138,11 @@ function getFilter(className) {
     })
 
     return filter;
+}
+
+function confirmSubmission() {
+    const confirmed = confirm("Are you sure you want to delete it?");
+    return confirmed;
 }
 
 document.addEventListener('click', function (e) {

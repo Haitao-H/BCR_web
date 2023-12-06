@@ -80,7 +80,7 @@ const getMedia = async (req, res) => {
 
 
     // get the result after applying the filter 
-    const data = await bcrData.find(JSON.parse(filter)).skip((page - 1) * 10).limit(limit)
+    const data = await bcrData.find(JSON.parse(filter)).skip((page - 1) * limit).limit(limit)
         .then((result) => {
 
             return result;

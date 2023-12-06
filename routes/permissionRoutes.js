@@ -62,7 +62,7 @@ router.post('/media/:objId', (req, res) => {
     bcrData.deleteOne({ _id: objId })
         .then(function () {
             console.log(`media id: ${objId} deleted`);
-            res.redirect('/home');
+            res.redirect('/media');
         }).catch(function (error) {
             console.log(error);
         });

@@ -42,7 +42,7 @@
 
         <!-- check any message -->
         <% if(JSON.stringify(locals, null, 2).includes('message')) {%>
-            <%= message%>  
+            <h2><%= message%></h2> 
         <% }else{ %>
             <h2>Contact Us</h2>
             <form action="/contact/submit" method="post" onsubmit="return confirmSubmission()">

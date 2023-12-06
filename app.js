@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const dbconnect = require('./dbConnect');
 const app = express();
+const morgan = require('morgan');
 const middleware = require('./middleware');
 const mediaRoutes = require('./routes/mediaRoutes');
 const authRoutes = require('./routes/authRoutes');
@@ -14,6 +15,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(morgan(':date[local] :method :url :status :response-time ms'));
 
 // connect to the database
 dbconnect();
