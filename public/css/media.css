@@ -93,6 +93,22 @@ body {
     cursor: help;
 }
 
+/* share btn style */
+#update-btn {
+    border-radius: 50px;
+    position: fixed;
+    right: 5%;
+    bottom: 20%;
+    padding: 20px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+#update-btn:hover {
+
+    background-color: lightgrey;
+    cursor: help;
+}
 
 /* filter collapsible style */
 .collapsible {

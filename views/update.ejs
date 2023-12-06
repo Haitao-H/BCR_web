@@ -11,13 +11,13 @@
     <%- include('partials/topnav') %>
 
     <%- include('partials/upload.ejs', { 
-        title: 'Resource Upload' ,
-        description: 'Upload relate resources' ,
-        fileAccept: 'image/*, audio/*, video/*', 
-        buttonLabel: 'Upload',
-        path: '/upload' 
+        title: 'Database Update' ,
+        description: 'Upload excel file to update Database' ,
+        fileAccept: '.xls, .xlsx' , 
+        buttonLabel: 'Update' ,
+        path: '/updates'
     }) %>
-   
+
 
     <%- include('partials/footer') %>
 

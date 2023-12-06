@@ -11,6 +11,7 @@ const router = express.Router();
 router.get('/category', mediaController.getAllCategory);
 router.get('/result', mediaController.getMedia);
 router.get('/share', mediaController.share);
+router.get('/update', mediaController.update);
 router.get('/:filter', mediaController.getAllSelector);
 router.get('/', mediaController.goToMedia);
 

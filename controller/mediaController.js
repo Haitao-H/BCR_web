@@ -120,7 +120,11 @@ const share = (req, res) => {
     res.render('share', { title: 'Share' })
 }
 
+const update = (req, res) => {
+    res.render('update', { title: 'Update' })
+}
+
 
 module.exports = {
-    getMedia, getAllCategory, getAllSelector, goToMedia, share
+    getMedia, getAllCategory, getAllSelector, goToMedia, share, update
 };

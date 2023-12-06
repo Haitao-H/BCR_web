@@ -73,7 +73,7 @@ function filterData() {
                 data.forEach((record) => {
                     html += `<div class="single-record">`
                     if (isAdmin) {
-                        html += `<form action="/delete/${record._id}" method="post" target="_blank">
+                        html += `<form action="/delete/media/${record._id}" method="post" target="_blank">
                                 <button type="submit">Delete</button>
                                 </form>`
                     }

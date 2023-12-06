@@ -17,9 +17,13 @@
         <% jsonData.messageList.forEach((message)=>{ %>
             <div class="unread-message-card">
                 <h3><%= message.email %></h3>
-                <p><span class="label">From:</span><%= message.name %></p>
-                <p><span class="label">Subject:</span><%= message.subject %></p>
+                <p><span class="label">From: </span><%= message.name %></p>
+                <p><span class="label">Subject: </span><%= message.subject %></p>
                 <p class="message"><%= message.message %></p>
+                <% let path = "/delete/unreadMessage/"+message._id %>
+                <form onsubmit="return confirmSubmission()" method="post" action=<%=path %> >
+                    <button class="delete-button" type="submit">Delete</button>
+                </form>
             </div>
         <% }) %>
 
@@ -63,7 +67,7 @@
 
     <script>
         function confirmSubmission() {
-            const confirmed = confirm("Are you sure you want to submit the form?");
+            const confirmed = confirm("Are you sure you want to continue?");
             return confirmed;
         }
     </script>

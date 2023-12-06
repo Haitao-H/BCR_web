@@ -31,7 +31,7 @@ routes.post('/submit', (req, res) => {
         }).catch((err) => {
             console.log('Error sending contact message...');
         })
-    res.render('contact', { title: 'Contact', message: 'Submitted Successfully!' });
+    res.render('contact', { title: 'Contact', message: 'Submitted Successfully! We will reply to messages within 3-5 business days, thank you!' });
 })
 
 module.exports = routes;

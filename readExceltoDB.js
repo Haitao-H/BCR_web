@@ -3,10 +3,8 @@ const dbconnect = require('./dbConnect');
 const XLSX = require('xlsx');
 // const fs = require('fs');
 
-
-dbconnect();
 // Function to read data from Excel file and save it to MongoDB
-async function readExcelAndSaveToMongo(filePath) {
+async function readExcel(filePath) {
   const workbook = XLSX.readFile(filePath);
   const sheetName = workbook.SheetNames[0];
   const worksheet = workbook.Sheets[sheetName];
@@ -22,15 +20,16 @@ async function readExcelAndSaveToMongo(filePath) {
     // Now you can use bcrDataInstance to save data to MongoDB or perform other operations
     try {
       await bcrDataInstance.save();
+      console.log('Success Updated')
     } catch (error) {
       console.error('Error saving data:', error);
     }
   }
-  process.exit();
 }
 
 // Specify the path to your Excel file
-const excelFilePath = `WebDataBaseProject.xlsx`;
+const excelFilePath = `./updates/file-${Date.now()}.xlsx`;
 
-// Call the function to read Excel data and save it to MongoDB
-readExcelAndSaveToMongo(excelFilePath);
+module.exports = {readExcel} ;
+
+

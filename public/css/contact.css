@@ -66,4 +66,15 @@ button:hover {
 
 .message {
     font-style: italic;
+    margin-top: 10px;
+}
+
+.delete-button {
+    margin-top: 20px;
+    background-color: #e67272;
+    font-weight: bold;
+}
+
+.delete-button:hover {
+    background-color: lightgrey;
 }
