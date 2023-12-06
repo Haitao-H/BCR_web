@@ -100,7 +100,11 @@ function filterData() {
                             <h4>Location: ${record.locality}</h4></div>`
                 })
 
-
+                if (isAdmin) {
+                    html += `<a href="/media/update" id="updateLink">
+                    <div id="update-btn"><h4>Update</h4></div>
+                    </a>`
+                }
 
                 if (totalPage == 1 || currentPage == 1) {
                     previous.style.display = 'none';
