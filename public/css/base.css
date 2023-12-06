@@ -1,5 +1,4 @@
 /* grid */
-
 body {
     display: grid;
     grid-template-rows: auto auto auto;
@@ -10,8 +9,6 @@ body>div {
     margin-right: auto;
     margin-left: auto;
 }
-
-
 
 
 /* top nav */
@@ -42,7 +39,6 @@ body>div {
     font-weight: bold;
 }
 
-
 .topnav a:hover {
     background-color: lightgrey;
     scale: 1.1;
@@ -54,16 +50,13 @@ a:active {
     color: black;
 }
 
+
 /* main container */
 .main-container {
     margin: 30px auto;
     padding: 30px;
     border-radius: 15px;
 }
-
-
-
-
 
 
 /* footer */

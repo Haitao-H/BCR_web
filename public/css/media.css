@@ -4,6 +4,11 @@ button {
 
 }
 
+video {
+    width: 80%;
+    max-width: 800px;
+}
+
 img {
     width: 120px;
     height: auto;
@@ -25,7 +30,6 @@ audio::-webkit-media-controls-volume-slider {
 audio::-webkit-media-controls-panel {
     background-color: #9b8a49;
 }
-
 
 .result-container {
     display: grid;
@@ -55,7 +59,7 @@ audio::-webkit-media-controls-panel {
     padding: 30px;
     text-align: center;
     overflow-wrap: break-word;
-    height: 220px;
+    height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: rgba(213, 197, 197, 0.1);
@@ -73,7 +77,6 @@ body {
 }
 
 /* share btn style */
-
 #share-btn {
     border-radius: 50px;
     position: fixed;
@@ -92,7 +95,6 @@ body {
 
 
 /* filter collapsible style */
-
 .collapsible {
     cursor: pointer;
     padding: 10px;
@@ -128,7 +130,6 @@ body {
 
 
 /* pagination style */
-
 .pagination {
     margin-block: 80px;
     text-align: center;

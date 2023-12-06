@@ -21,6 +21,17 @@
             <!-- login box -->
             <div class="container">
                 <div class="form">
+
+                    <!-- check any error message -->
+					<% if(JSON.stringify(locals, null, 2).includes('message')) {%>
+						<div class="alert"
+							style="margin-bottom: 30px; color: red; border: 1px solid red; padding: 10px; background-color: lightgrey;">
+							<span class="closebtn" onclick="this.parentElement.style.display='none';"
+								style="float: right;">&times;</span>
+							<%= message%>
+						</div>
+						<% } %>
+
                     <h2>Register</h2>
                     <form id = "registerform" action=/register method="post" name = "form1">
                         <div class="inputBox">
@@ -40,11 +51,15 @@
  
                         </div>	
                         <div class="inputBox">
+                            <input type="text" placeholder="(Optional):Enter your code" name="code" id="code">
+ 
+                        </div>	
+                        <div class="inputBox">
 							<input type="submit" value="Submit" id="input1">
 
                         </div>
 
-                        <p class="forget">Have an account?<a href="login">
+                        <p class="forget">Have an account?&#8194;<a href="login">
                                 Click to Login
                             </a></p>
                     </form>
