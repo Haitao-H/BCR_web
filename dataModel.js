@@ -54,7 +54,7 @@ const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
-    level: { type: Number }
+    level: { type: String, require: true }
 })
 
 const unreadMessageSchema = new mongoose.Schema({
@@ -67,6 +67,12 @@ const unreadMessageSchema = new mongoose.Schema({
 const User = mongoose.model('user', userSchema);
 const bcrData = mongoose.model('bcrData', bcrSchema);
 const unreadMessage = mongoose.model('unreadMessage', unreadMessageSchema);
+
+
+// --------   referral code --------
+const refCode = "admin";              //
+// --------   referral code -------- 
+
 
 // add mock data for delete
 // for(let i = 0; i<2; i=i+1){
@@ -83,5 +89,6 @@ const unreadMessage = mongoose.model('unreadMessage', unreadMessageSchema);
 module.exports = {
     bcrData,
     User,
-    unreadMessage
+    unreadMessage,
+    refCode
 }

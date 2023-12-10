@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const router = express.Router();
-const { bcrData } = require('../dataModel');
+const { bcrData, refCode } = require('../dataModel');
 
 const categoryList = ['species', 'format', 'year'];
 
@@ -100,7 +100,7 @@ const getMedia = async (req, res) => {
 
     // is admin?
     let isAdmin;
-    if (req.session.user && req.session.user.level == 666) {
+    if (req.session.user && req.session.user.level == refCode) {
         isAdmin = true;
     } else {
         isAdmin = false;

@@ -1,11 +1,11 @@
 const express = require('express');
 const routes = express.Router();
-const { unreadMessage } = require('../dataModel');
+const { unreadMessage, refCode } = require('../dataModel');
 
 routes.get('/', async (req, res) => {
     let jsonData = {}
     // is admin?
-    if (req.session.user && req.session.user.level == 666) {
+    if (req.session.user && req.session.user.level == refCode) {
         try {
             const messageList = await unreadMessage.find();
             jsonData.messageList = messageList;
@@ -31,8 +31,8 @@ routes.post('/submit', (req, res) => {
         }).catch((err) => {
             console.log('Error sending contact message...');
         })
-    res.render('contact', { 
-        title: 'Contact', 
+    res.render('contact', {
+        title: 'Contact',
         message: 'Submitted Successfully! We will reply to messages within 3-5 business days, thank you!'
     });
 })

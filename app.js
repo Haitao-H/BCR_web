@@ -35,8 +35,8 @@ app.listen(3000, () => {
 });
 
 app.use('/', authRoutes);
-app.use('/media', mediaRoutes);
-// app.use('/media', middleware.isAuth, mediaRoutes);
+// app.use('/media', mediaRoutes);
+app.use('/media', middleware.isAuth, mediaRoutes);
 
 app.use('/delete', permissionRoutes);
 app.use('/upload', uploadRoutes);

@@ -6,11 +6,6 @@ const session = require('express-session');
 const dataModel = require('../dataModel');
 
 
-// --------   referral code --------
-const refCode = 666;              //
-// --------   referral code -------- 
-
-
 const indexPage = (req, res) => {
     if (req.session.user) {
         res.redirect('/home');
@@ -47,10 +42,10 @@ const registerPost = async (req, res) => {
             return res.status(400).render('register', { title: 'register', message: "Email address is already in use" })
         }
         // classify the user access level
-        if (code == refCode) {
-            code = refCode;
+        if (code == dataModel.refCode) {
+            code = "admin";
         } else {
-            code = 111;
+            code = "member";
         }
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = new dataModel.User({
